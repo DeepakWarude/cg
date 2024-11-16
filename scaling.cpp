@@ -102,4 +102,70 @@ int main() {
     closegraph();
     return 0;
 }
+#include <graphics.h>
+#include <conio.h>
+#include <iostream>
+
+using namespace std;
+
+// Function to draw a triangle
+void drawTriangle(int x1, int y1, int x2, int y2, int x3, int y3) {
+    int points[] = {x1, y1, x2, y2, x3, y3, x1, y1}; // Closing the triangle
+    drawpoly(4, points);
+}
+
+// Function to perform X shear
+void xShear(int &x1, int &y1, int &x2, int &y2, int &x3, int &y3, float sh) {
+    // Shearing in the X direction
+    int tempY1 = y1;
+    int tempY2 = y2;
+    int tempY3 = y3;
+
+    y1 = static_cast<int>(tempY1 + sh * x1);
+    y2 = static_cast<int>(tempY2 + sh * x2);
+    y3 = static_cast<int>(tempY3 + sh * x3);
+}
+
+// Function to perform Y shear
+void yShear(int &x1, int &y1, int &x2, int &y2, int &x3, int &y3, float sh) {
+    // Shearing in the Y direction
+    int tempX1 = x1;
+    int tempX2 = x2;
+    int tempX3 = x3;
+
+    x1 = static_cast<int>(tempX1 + sh * y1);
+    x2 = static_cast<int>(tempX2 + sh * y2);
+    x3 = static_cast<int>(tempX3 + sh * y3);
+}
+
+int main() {
+    int gd = DETECT, gm;
+    initgraph(&gd, &gm, "C:\\Turboc3\\BGI"); // Adjust the path as necessary
+
+    // Initial triangle coordinates
+    int x1 = 200, y1 = 100;
+    int x2 = 300, y2 = 300;
+    int x3 = 100, y3 = 300;
+
+    // Draw the original triangle
+    drawTriangle(x1, y1, x2, y2, x3, y3);
+    delay(2000); // Wait for 2 seconds
+
+    // Perform X shear
+    float xShearFactor = 0.5; // Shear factor for X direction
+    xShear(x1, y1, x2, y2, x3, y3, xShearFactor);
+    cleardevice(); // Clear the screen
+    drawTriangle(x1, y1, x2, y2, x3, y3);
+    delay(2000); // Wait for 2 seconds
+
+    // Perform Y shear
+    float yShearFactor = 0.5; // Shear factor for Y direction
+    yShear(x1, y1, x2, y2, x3, y3, yShearFactor);
+    cleardevice(); // Clear the screen
+    drawTriangle(x1, y1, x2, y2, x3, y3);
+    delay(2000); // Wait for 2 seconds
+
+    closegraph();
+    return 0;
+}
 
