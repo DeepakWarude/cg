@@ -35,6 +35,41 @@ int main(){
     return 0;
 }
 #include <iostream>
+#include <cctype> // For tolower function
+
+using namespace std;
+
+int main() {
+    char ch;
+
+    // Prompt the user to enter a character
+    cout << "Enter a character: ";
+    cin >> ch;
+
+    // Convert character to lowercase to simplify comparison
+    ch = tolower(ch);
+
+    // Check if the character is an alphabet
+    if (isalpha(ch)) {
+        // Check if the character is a vowel
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+            cout << ch << " is a vowel." << endl;
+        } else {
+            cout << ch << " is a consonant." << endl;
+        }
+    } else {
+        cout << "Please enter a valid alphabetic character." << endl;
+    }
+
+    return 0;
+}
+
+int main(){
+
+    grades();
+    return 0;
+}
+#include <iostream>
 #include <string>
 #include <vector>
 #include <stdexcept>
